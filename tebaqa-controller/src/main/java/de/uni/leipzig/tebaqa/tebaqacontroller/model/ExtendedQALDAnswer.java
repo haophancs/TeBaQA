@@ -11,7 +11,7 @@ public class ExtendedQALDAnswer {
     private static int _id = 0;
     private final String result;
 
-    public ExtendedQALDAnswer(AnswerToQuestion answer, boolean includeQuery) {
+    public ExtendedQALDAnswer(AnswerToQuestion answer, boolean includeQuery, double elaps) {
         JsonArrayBuilder resultBindings = Json.createArrayBuilder();
         Set<String> answers = answer.getAnswer();
         answers.forEach(a -> {
@@ -35,6 +35,7 @@ public class ExtendedQALDAnswer {
                                     ))
                             .add("query", Json.createObjectBuilder()
                                     .add("sparql", answer.getSparqlQuery()))
+                            .add("elaps", elaps)
                     ));
         } else {
             questions = Json.createObjectBuilder()
@@ -44,8 +45,8 @@ public class ExtendedQALDAnswer {
                                             .add("head", Json.createObjectBuilder()
                                                     .add("vars", Json.createArrayBuilder().add("x")))
                                             .add("results", Json.createObjectBuilder()
-                                                    .add("bindings", resultBindings)).build().toString()
-                                    ))
+                                                    .add("bindings", resultBindings)).build().toString()))
+                            .add("elaps", elaps)
                     ));
         }
 

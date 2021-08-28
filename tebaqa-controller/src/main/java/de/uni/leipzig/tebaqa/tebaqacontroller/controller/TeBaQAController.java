@@ -39,12 +39,15 @@ public class TeBaQAController {
         if (!query.isEmpty() && isValidQuestion(query) && language != null) {
             String result;
             try {
+                long start_time = System.currentTimeMillis();
                 AnswerToQuestion answer = qaService.answerQuestion(query, language);
+                double elaps = System.currentTimeMillis() - start_time;
                 JsonArrayBuilder resultArray = Json.createArrayBuilder();
                 answer.getAnswer().forEach(a -> resultArray.add(ExtendedQALDAnswer.extractAnswerString(a)));
                 result = Json.createObjectBuilder()
                         .add("answers", resultArray)
                         .add("sparql", answer.getSparqlQuery())
+                        .add("elaps", elaps)
                         .build().toString();
 
             } catch (Exception e) {
@@ -64,16 +67,19 @@ public class TeBaQAController {
     public String answerQuestion(@RequestParam String query,
                                  @RequestParam(required = false, defaultValue = "en") String lang,
                                  HttpServletResponse response) {
+
         LOGGER.info(String.format("/qa received POST request with: question='%s' and lang='%s'", query, lang));
 
         Lang language = Lang.getForCode(lang);
         if (!query.isEmpty() && isValidQuestion(query) && language != null) {
             String result;
             try {
+                long start_time = System.currentTimeMillis();
                 AnswerToQuestion answer = qaService.answerQuestion(query, language);
-                result = new ExtendedQALDAnswer(answer, false).getResult();
+                double elaps = System.currentTimeMillis() - start_time;
+                result = new ExtendedQALDAnswer(answer, false, elaps).getResult();
             } catch (Exception e) {
-                result = new ExtendedQALDAnswer(new AnswerToQuestion(new ResultsetBinding(), new HashMap<>()), false).getResult();
+                result = new ExtendedQALDAnswer(new AnswerToQuestion(new ResultsetBinding(), new HashMap<>()), false, 0).getResult();
                 LOGGER.error(String.format("Got Exception while answering='%s' with lang='%s'", query, lang), e);
             }
             LOGGER.info("Answer: " + result);
@@ -96,10 +102,12 @@ public class TeBaQAController {
         if (!query.isEmpty() && isValidQuestion(query) && language != null) {
             String result;
             try {
+                long start_time = System.currentTimeMillis();
                 AnswerToQuestion answer = qaService.answerQuestion(query, language);
-                result = new ExtendedQALDAnswer(answer, true).getResult();
+                double elaps = System.currentTimeMillis() - start_time;
+                result = new ExtendedQALDAnswer(answer, true, elaps).getResult();
             } catch (Exception e) {
-                result = new ExtendedQALDAnswer(new AnswerToQuestion(new ResultsetBinding(), new HashMap<>()), false).getResult();
+                result = new ExtendedQALDAnswer(new AnswerToQuestion(new ResultsetBinding(), new HashMap<>()), false, 0).getResult();
                 LOGGER.error(String.format("Got Exception while answering='%s' with lang='%s'", query, lang), e);
             }
             LOGGER.info("Answer: " + result);
