@@ -1,3 +1,0 @@
-language: java
-before_script: sudo mkdir -p /home/travis/build/dice-group/TeBaQA/resources/indexOntology
-script: travis_wait 45 mvn test
