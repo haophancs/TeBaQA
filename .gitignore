@@ -1,0 +1,27 @@
+# IntelliJ stuff:
+.idea/
+*.iml
+.classpath
+.project
+.settings/
+
+/elasticsearch/
+/data/dbpedia/entities/
+
+/tebaqa-commons/target/
+/tebaqa-controller/target/
+/entity-linking/target/
+/query-ranking/target/
+/nlp/target/
+/template-classification/target/
+
+
+# Build files
+/target/
+/resources/indexOntology/
+/resources/ontologyClasses/
+/resources/ontologyProperties/
+
+# Log files
+log.out
+*.log
