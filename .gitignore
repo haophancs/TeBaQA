@@ -5,6 +5,20 @@
 .project
 .settings/
 
+/elasticsearch/
+/data/dbpedia/entities/instance_types_en.ttl
+/data/dbpedia/entities/instance_types_transitive_en.ttl
+/data/dbpedia/entities/mappingbased_objects_en.ttl
+/data/dbpedia/entities/specific_mappingbased_properties_en.ttl
+
+/tebaqa-commons/target/
+/tebaqa-controller/target/
+/entity-linking/target/
+/query-ranking/target/
+/nlp/target/
+/template-classification/target/
+
+
 # Build files
 /target/
 /resources/indexOntology/
