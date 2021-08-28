@@ -77,7 +77,7 @@ public class TeBaQAController {
                 long start_time = System.currentTimeMillis();
                 AnswerToQuestion answer = qaService.answerQuestion(query, language);
                 double elaps = System.currentTimeMillis() - start_time;
-                result = new ExtendedQALDAnswer(answer, false, elaps / 1000.).getResult();
+                result = new ExtendedQALDAnswer(answer, true, elaps / 1000.).getResult();
             } catch (Exception e) {
                 result = new ExtendedQALDAnswer(new AnswerToQuestion(new ResultsetBinding(), new HashMap<>()), false, 0).getResult();
                 LOGGER.error(String.format("Got Exception while answering='%s' with lang='%s'", query, lang), e);
