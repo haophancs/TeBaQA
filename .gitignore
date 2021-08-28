@@ -5,6 +5,17 @@
 .project
 .settings/
 
+/elasticsearch/
+/data/dbpedia/entities/
+
+/tebaqa-commons/target/
+/tebaqa-controller/target/
+/entity-linking/target/
+/query-ranking/target/
+/nlp/target/
+/template-classification/target/
+
+
 # Build files
 /target/
 /resources/indexOntology/
