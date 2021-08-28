@@ -41,7 +41,7 @@ public class TeBaQAController {
             try {
                 long start_time = System.currentTimeMillis();
                 AnswerToQuestion answer = qaService.answerQuestion(query, language);
-                double elaps = (System.currentTimeMillis() - start_time;
+                double elaps = System.currentTimeMillis() - start_time;
                 JsonArrayBuilder resultArray = Json.createArrayBuilder();
                 answer.getAnswer().forEach(a -> resultArray.add(ExtendedQALDAnswer.extractAnswerString(a)));
                 result = Json.createObjectBuilder()
