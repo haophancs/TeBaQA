@@ -5,7 +5,10 @@
 .project
 .settings/
 
+/data/elasticsearchdump/*.json
+
 /elasticsearch/
+/elasticsearch-6.6.1/
 /data/dbpedia/entities/
 
 /tebaqa-commons/target/
